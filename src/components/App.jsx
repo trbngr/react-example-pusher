@@ -4,11 +4,11 @@ import {itemAdded} from '../data/actions/List.js';
 
 import Pusher from './PusherSubscription.js';
 
-class App extends Component{
-    render(){
+class App extends Component {
+    render() {
         const {list} = this.props;
 
-        const items = list.map(function(i){
+        const items = list.map(function (i) {
             return <li></li>;
         })
 
@@ -18,10 +18,10 @@ class App extends Component{
 
         return (
             <div>
-                <Pusher channel="private-channel" handlers={eventHandlers} />
-            <ol>
-                {items}
-            </ol>
+                <Pusher channel="private-channel" handlers={eventHandlers}/>
+                <ol>
+                    {items}
+                </ol>
             </div>
         );
     }
