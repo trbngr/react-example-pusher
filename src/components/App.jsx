@@ -13,9 +13,7 @@ class App extends Component {
         })
 
         const bindings = [
-            {event: 'item-added', handler: (item)=>{
-                itemAdded(item)
-            }}
+            {event: 'item-added', handler: itemAdded }
         ];
 
         return (
