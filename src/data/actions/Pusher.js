@@ -11,20 +11,17 @@ const options = {
 
 export function connectToPusher(){
     return (dispatch, getState) => {
-        const client = getState().pusher.client;
 
-        if(client !== undefined)
-        {
-            dispatch(connectedToPusher(client))
-            return;
+        let client = getState().pusher.client;
+
+        if (client !== undefined) {
+            dispatch(connectedToPusher(client));
+        } else {
+            dispatch({type: CONNECT_TO_PUSHER});
+            $script(scriptUrl, function () {
+                dispatch(connectedToPusher(new Pusher(key, options)));
+            });
         }
-
-        dispatch({type: CONNECT_TO_PUSHER});
-
-        $script(scriptUrl, function () {
-            dispatch(connectedToPusher(new Pusher(key, options)));
-        });
-
     };
 }
 
