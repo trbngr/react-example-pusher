@@ -10,8 +10,8 @@ const logger = loggerMiddleware({
 });
 
 const createStoreWithMiddleware = applyMiddleware(
-    thunkMiddleware // lets us dispatch() functions
-    //logger // neat middleware that logs actions
+    thunkMiddleware, // lets us dispatch() functions
+    logger // neat middleware that logs actions
 )(createStore);
 
 export default function configureStore(initialState) {

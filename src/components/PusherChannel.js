@@ -2,11 +2,11 @@ import React, {PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { connectToPusher } from '../data/actions/Pusher.js';
 
-class PusherSubscription extends React.Component {
+class PusherChannel extends React.Component {
+
     constructor(props) {
         super(props);
-        if(!this.props.client)
-            this.props.connectToPusher();
+        this.props.connectToPusher();
     }
 
     static propTypes = {
@@ -31,13 +31,12 @@ class PusherSubscription extends React.Component {
 
         const {client, channel, bindings} = this.props;
 
-        if(client)
-        {
-            var subscription = client.subscribe(channel);
-            for (var binding of bindings) {
-                console.log('bind')
-                subscription.bind(binding.event, binding.handler);
-            }
+        if (!client)
+            return null;
+
+        var subscription = client.subscribe(channel);
+        for (var binding of bindings) {
+            subscription.bind(binding.event, binding.handler);
         }
 
         return null;
@@ -50,4 +49,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {connectToPusher})(PusherSubscription);
+export default connect(mapStateToProps, {connectToPusher})(PusherChannel);
