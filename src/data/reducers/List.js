@@ -1,11 +1,11 @@
-import {ADD_ITEM} from '../actions/List.js';
+import { ITEM_ADDED } from '../actions/List.js';
 
 const initialState = [];
 
 export default function list(state = initialState, action = undefined){
     switch (action.type){
 
-        case ADD_ITEM:
+        case ITEM_ADDED:
             return [
                 action.item,
                 ...state

@@ -2,23 +2,25 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {itemAdded} from '../data/actions/List.js';
 
-import Pusher from './PusherSubscription.js';
+import Pusher from './PusherChannel.js';
 
 class App extends Component {
     render() {
-        const {list} = this.props;
+        const {list, itemAdded} = this.props;
 
         const items = list.map(function (i) {
             return <li></li>;
         })
 
         const bindings = [
-            {event: 'item-added', handler: (item)=>this.props.itemAdded(item)}
+            {event: 'item-added', handler: (item)=>{
+                itemAdded(item)
+            }}
         ];
 
         return (
             <div>
-                <Pusher channel="private-channel" bindings={bindings}/>
+                <Pusher channel="my-channel" bindings={bindings}/>
                 <ol>
                     {items}
                 </ol>

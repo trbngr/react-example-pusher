@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import list from './List.js';
+import pusher from './Pusher.js';
 
-export default combineReducers({
+export default {
+    pusher,
     list
-});
+};
