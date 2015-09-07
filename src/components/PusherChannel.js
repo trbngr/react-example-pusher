@@ -19,8 +19,10 @@ class PusherChannel extends React.Component {
     };
 
     componentWillUnmount() {
-        if(this.props.client)
-            this.props.client.disconnect();
+        const {client, channel} = this.props;
+        
+        if(client)
+            client.unsubscribe(channel);
     }
 
     shouldComponentUpdate(next){
