@@ -12,13 +12,13 @@ class App extends Component {
             return <li></li>;
         })
 
-        const eventHandlers = [
+        const bindings = [
             {event: 'item-added', handler: (item)=>this.props.itemAdded(item)}
         ];
 
         return (
             <div>
-                <Pusher channel="private-channel" handlers={eventHandlers}/>
+                <Pusher channel="private-channel" bindings={bindings}/>
                 <ol>
                     {items}
                 </ol>

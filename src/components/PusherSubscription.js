@@ -33,7 +33,7 @@ class PusherSubscription extends React.Component {
 
     static propTypes = {
         channel: PropTypes.string.isRequired,
-        handlers: PropTypes.arrayOf(PropTypes.shape({
+        bindings: PropTypes.arrayOf(PropTypes.shape({
             event: PropTypes.string.isRequired,
             handler: PropTypes.func.isRequired
         })).isRequired
@@ -47,11 +47,11 @@ class PusherSubscription extends React.Component {
 
     componentDidMount() {
         getClient(this.log, client => {
-            const {channel, handlers} = this.props;
+            const {channel, bindings} = this.props;
 
             var subscription = client.subscribe(channel);
-            for (var handler of handlers) {
-                subscription.bind(handler.event, handler.handler);
+            for (var binding of bindings) {
+                subscription.bind(binding.event, binding.handler);
             }
         });
     }
